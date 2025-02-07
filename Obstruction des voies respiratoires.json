@@ -1,0 +1,18 @@
+{
+    "description": "**Situation d'urgence :** Obstruction des voies respiratoires due à un objet étranger ou une substance, nécessitant une intervention immédiate pour rétablir la respiration normale.",
+    "consignes": [
+        "**Consignes à suivre :**",
+        "Maintenir la calme et sécuriser la victime.",
+        "Essayer de dégager l'obstruction avec des méthodes manuelles appropriées si la victime est consciente.",
+        "Appliquer les premiers soins de base, y compris les compressions thoraciques si la victime devient inconsciente.",
+        "Appeler les services d'urgence médicale immédiatement.",
+        "Suivre les instructions fournies par les services d'urgence jusqu'à l'arrivée des secours."
+    ],
+    "etapes_validation": {
+        "Appel des services d’urgence": false,
+        "Application des premiers soins": false,
+        "Détection de l’obstruction": false,
+        "Suivi des instructions": false,
+        "Vérification de la conscience": false
+    }
+}

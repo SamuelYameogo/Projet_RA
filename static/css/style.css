@@ -1,0 +1,114 @@
+/* Corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: none; /* Supprime tout autre arrière-plan */
+    overflow: hidden; /* Évite les débordements globaux */
+    position: relative; /* Nécessaire pour positionner les sections */
+}
+
+/* Arrière-plan gauche et droit */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%; /* Chaque image occupe la moitié de l'écran */
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+body::before {
+    left: 0;
+    background-image: url('/static/images/aaa.jpeg'); /* Image de gauche */
+}
+
+body::after {
+    right: 0;
+    background-image: url('/static/images/aaaa.webp'); /* Image de droite */
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.9); /* Fond blanc avec opacité pour meilleure lisibilité */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* Place le conteneur par-dessus les images */
+    position: relative; /* Permet de positionner correctement le contenu */
+    height: calc(100vh - 100px); /* Ajuste la hauteur du conteneur */
+    overflow-y: auto; /* Permet le défilement vertical du texte */
+}
+
+/* Titre */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Champ de texte et bouton */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Zone de texte pour le scénario JSON */
+#scenario {
+    width: calc(100% - 20px); /* Ajustement pour éviter le collage */
+    height: 150px; /* Taille initiale plus grande */
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px; /* Ajout d'une marge à droite */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: both; /* Permet d'agrandir la zone */
+    font-family: monospace;
+    white-space: pre-wrap; /* Préserve la mise en forme JSON */
+}
+
+button {
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Contenu de la réponse */
+#response {
+    margin-top: 20px;
+}
+
+#response h2 {
+    color: #555;
+}
+
+#scenario-output {
+    font-style: italic;
+    color: #666;
+    white-space: pre-wrap; /* Préserve les sauts de ligne */
+    overflow-wrap: break-word; /* Coupe correctement les mots longs */
+    line-height: 1.6;
+}

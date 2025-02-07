@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation des Scénarios</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>    
+<body>
+    <div class="container">
+        <h1>Validation des Scénarios</h1>
+
+        <!-- Zone pour insérer le JSON du scénario -->
+        <label for="scenario">Scénario (JSON) :</label>
+        <textarea id="scenario" placeholder='{"description": "...", "consignes": [...], "etapes_validation": {...}}'></textarea>
+
+        <!-- Zone pour insérer l'étape à valider -->
+        <label for="etape">Étape à valider :</label>
+        <input type="text" id="etape" placeholder="Entrez l'étape ici">
+
+        <!-- Boutons -->
+        <button onclick="validerEtape()">Valider</button>
+        <button onclick="enregistrerScenario()">Enregistrer</button>
+
+        <!-- Zone pour afficher le résultat -->
+        <p id="resultat"></p>
+    </div>
+
+    <script>
+        // Agrandir automatiquement la zone de texte
+        document.getElementById("scenario").style.height = "150px";
+
+        function validerEtape() {
+            let scenario = document.getElementById("scenario").value;
+            let etape = document.getElementById("etape").value;
+            let resultat = document.getElementById("resultat");
+
+            fetch("/valider", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ scenario: scenario, etape: etape })
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultat.textContent = "Résultat: " + data.validation;
+                document.getElementById("scenario").value = data.scenario; // Mettre à jour le JSON affiché
+            })
+            .catch(error => {
+                resultat.textContent = "Erreur: " + error;
+            });
+        }
+
+        function enregistrerScenario() {
+            let scenario = document.getElementById("scenario").value;
+
+            fetch("/enregistrer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ scenario: scenario })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Scénario enregistré avec succès !");
+            })
+            .catch(error => {
+                alert("Erreur lors de l'enregistrement !");
+            });
+        }
+    </script>
+</body>
+</html>

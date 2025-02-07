@@ -1,0 +1,13 @@
+{
+    "description": "**Scénario :** Un patient adulte présente une fracture ouverte du tibia gauche après un accident de vélo.\n\n**Évaluation initiale :**\n- Le patient est conscient et stable.\n- La fracture est ouverte, avec une plaie de 5 cm de longueur et 1 cm de profondeur.\n- Le patient ressent une douleur modérée à sévère.\n\n**Consignes :**\n\n1. **Évaluation de la scène et du patient** : Assurez-vous que la scène est sûre et évaluez l'état général du patient, notamment la respiration, le pouls et la pression artérielle.\n   \n2. **Immobilisation** : Utilisez un matériel approprié (comme une attelle ou un bandage de contention) pour immobiliser la jambe fracturée et réduire le mouvement. Évitez de déplacer le patient inutilement.\n\n3. **Contrôle des saignements** : Appliquez un pansement stérile sur la plaie pour contrôler les saignements, mais évitez d'enlever tout débris ou corps étranger de la plaie.\n\n4. **Gestion de la douleur** : Si possible, administrez un analgésique de niveau 1 (comme le paracétamol) selon les directives médicales.\n\n5. **Appel aux secours** : Contactez les services d'urgence pour demander une évacuation vers un centre hospitalier.\n\n**Règles d'évaluation :**\n- La capacité à évaluer rapidement et efficacement la situation.\n- La compétence dans l'application des premiers soins pour une fracture ouverte.\n- La gestion appropriée de la douleur et du saignement.\n- La communication claire avec le patient et les services d'urgence.\n\n**Objectif :** Fournir des soins de premiers secours appropriés pour une fracture ouverte, en assurant la stabilité et le confort du patient jusqu'à l'arrivée des secours médicaux.",
+    "consignes": [
+        "Vérifiez la respiration",
+        "Appelez les secours",
+        "Commencez le massage cardiaque"
+    ],
+    "etapes_validation": {
+        "Vérifiez la respiration": true,
+        "Appelez les secours": false,
+        "Commencez le massage cardiaque": false
+    }
+}
