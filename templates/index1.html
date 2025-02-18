@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur et Validation de Scénarios</title>
+    <link rel="stylesheet" href="/static/css/style1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur et Validation de Scénarios</h1>
+
+        <!-- Zone pour générer un scénario -->
+        <div class="section">
+            <h2>Générer un Scénario</h2>
+            <form action="/generer" method="POST">
+                <textarea name="requete" placeholder="Entrez votre requête..." minlength="10" required>{{ requete if requete else '' }}</textarea>
+                <button type="submit">Générer</button>
+            </form>
+            {% if scenario and not show_validation %}
+                <div class="scenario-output">
+                    <h3>Description :</h3>
+                    <p>{{ scenario['description'] }}</p>
+                    <h3>Consignes :</h3>
+                    <ol>
+                        {% for consigne in scenario['consignes'] %}
+                            <li>{{ consigne }}</li>
+                        {% endfor %}
+                    </ol>
+                    <h3>Étapes de validation :</h3>
+                    <ul>
+                        {% for etape, valide in scenario['etapes_validation'].items() %}
+                            <li>{{ etape }} : {{ "✅" if valide else "❌" }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% elif error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Zone pour générer des scénarios par niveaux -->
+        <div class="section">
+            <h2>Générer en fonction des niveaux</h2>
+            <form action="/generer_niveaux" method="POST">
+                <textarea name="requete" placeholder="Entrez votre requête..." minlength="10" required>{{ requete if requete else '' }}</textarea>
+                <button type="submit">Générer par niveaux</button>
+            </form>
+            {% if scenarios_niveaux %}
+                {% for niveau, scenario in scenarios_niveaux.items() %}
+                    <div class="scenario-output">
+                        <h3>Niveau {{ niveau }} :</h3>
+                        {% if scenario.error %}
+                            <p style="color: red;">{{ scenario.error }}</p>
+                        {% else %}
+                            <p><strong>Description :</strong> {{ scenario['description'] }}</p>
+                            <p><strong>Consignes :</strong></p>
+                            <ol>
+                                {% for consigne in scenario['consignes'] %}
+                                    <li>{{ consigne }}</li>
+                                {% endfor %}
+                            </ol>
+                            <p><strong>Étapes de validation :</strong></p>
+                            <ul>
+                                {% for etape, valide in scenario['etapes_validation'].items() %}
+                                    <li>{{ etape }} : {{ "✅" if valide else "❌" }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Zone de validation des étapes -->
+        <div class="section">
+            <h2>Valider une Étape</h2>
+            <form action="/valider" method="POST">
+                <textarea name="scenario" placeholder="Collez ici le scénario en format JSON..." required>{{ scenario | tojson | safe if scenario else '' }}</textarea>
+                <input type="text" name="etape" placeholder="Entrez l'étape à valider" required>
+                <button type="submit">Valider</button>
+            </form>
+            {% if validation_result %}
+                <p style="color: green;">{{ validation_result }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Bouton pour enregistrer le scénario -->
+        <div class="section">
+            <h2>Enregistrer le Scénario</h2>
+            <button onclick="enregistrerScenario()">Télécharger le scénario</button>
+        </div>
+    </div>
+
+    <script>
+        function enregistrerScenario() {
+            let scenarioTexte = JSON.stringify({{ scenario | tojson | safe if scenario else '{}' }}, null, 4);
+            let blob = new Blob([scenarioTexte], { type: "application/json" });
+            saveAs(blob, "scenario_sauvegarde.json");
+        }
+    </script>
+</body>
+</html>

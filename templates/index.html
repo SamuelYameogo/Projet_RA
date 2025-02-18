@@ -3,69 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation des Scénarios</title>
+    <title>Validation de Scénarios</title>
     <link rel="stylesheet" href="/static/css/style.css">
-</head>    
+</head>
 <body>
     <div class="container">
-        <h1>Validation des Scénarios</h1>
+        <h1>Validation de Scénarios</h1>
 
-        <!-- Zone pour insérer le JSON du scénario -->
-        <label for="scenario">Scénario (JSON) :</label>
-        <textarea id="scenario" placeholder='{"description": "...", "consignes": [...], "etapes_validation": {...}}'></textarea>
+        <!-- Formulaire de validation -->
+        <div class="section">
+            <h2>Valider des Étapes</h2>
+            <textarea id="scenario" placeholder="Entrez le scénario en JSON..."></textarea>
+            <textarea id="etapes" placeholder="Entrez les étapes (séparées par une virgule)..."></textarea>
+            <button id="valider-btn">Valider</button>
+            <pre id="validation-result"></pre>
+        </div>
 
-        <!-- Zone pour insérer l'étape à valider -->
-        <label for="etape">Étape à valider :</label>
-        <input type="text" id="etape" placeholder="Entrez l'étape ici">
-
-        <!-- Boutons -->
-        <button onclick="validerEtape()">Valider</button>
-        <button onclick="enregistrerScenario()">Enregistrer</button>
-
-        <!-- Zone pour afficher le résultat -->
-        <p id="resultat"></p>
+        <!-- Formulaire d'enregistrement et téléchargement -->
+        <div class="section">
+            <h2>Enregistrer et Télécharger</h2>
+            <button id="enregistrer-btn">Télécharger le Scénario</button>
+            <p id="save-result"></p>
+        </div>
     </div>
 
     <script>
-        // Agrandir automatiquement la zone de texte
-        document.getElementById("scenario").style.height = "150px";
-
-        function validerEtape() {
+        document.getElementById("valider-btn").addEventListener("click", function() {
             let scenario = document.getElementById("scenario").value;
-            let etape = document.getElementById("etape").value;
-            let resultat = document.getElementById("resultat");
+            let etapes = document.getElementById("etapes").value.split(",").map(e => e.trim());
 
             fetch("/valider", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ scenario: scenario, etape: etape })
+                body: JSON.stringify({ scenario: scenario, etapes: etapes })
             })
             .then(response => response.json())
             .then(data => {
-                resultat.textContent = "Résultat: " + data.validation;
-                document.getElementById("scenario").value = data.scenario; // Mettre à jour le JSON affiché
+                document.getElementById("validation-result").textContent = JSON.stringify(data.validation, null, 2);
+                
+                // Mettre à jour le champ du scénario avec le JSON formaté
+                document.getElementById("scenario").value = JSON.stringify(data.scenario, null, 4);
             })
-            .catch(error => {
-                resultat.textContent = "Erreur: " + error;
-            });
-        }
+            .catch(error => console.error("Erreur :", error));
+        });
 
-        function enregistrerScenario() {
-            let scenario = document.getElementById("scenario").value;
-
-            fetch("/enregistrer", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ scenario: scenario })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert("Scénario enregistré avec succès !");
-            })
-            .catch(error => {
-                alert("Erreur lors de l'enregistrement !");
-            });
-        }
+        document.getElementById("enregistrer-btn").addEventListener("click", function() {
+            // Lancer directement le téléchargement sans passer par fetch
+            window.location.href = "/enregistrer";
+        });
     </script>
 </body>
 </html>
