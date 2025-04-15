@@ -1,3 +1,23 @@
+"""
+API Flask minimaliste pour valider/enregistrer des scénarios JSON
+
+Fonctionnalités :
+- Validation d'étapes dans un scénario structuré
+- Sauvegarde locale en JSON
+- Téléchargement du fichier
+- Compatible CORS pour intégration cross-origin (ex: Unity)
+
+Routes :
+- POST /valider : Met à jour le statut des étapes
+- GET /enregistrer : Télécharge le scénario validé
+
+Usage typique :
+1. Envoyer un scénario JSON avec étapes à valider
+2. Récupérer le fichier final après validation
+"""
+
+
+
 from flask import Flask, render_template, jsonify, send_from_directory, request
 import json
 import os

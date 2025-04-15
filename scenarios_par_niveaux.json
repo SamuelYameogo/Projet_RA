@@ -1,0 +1,54 @@
+{
+    "Débutant": {
+        "description": "Scénario adapté pour le niveau Débutant",
+        "scenario": "**Scénario pour le niveau Débutant : Malaise cardiaque sur un terrain de football**\n\n**Introduction :**\nVous êtes l'entraîneur d'une équipe de football junior qui joue un match important sur le terrain de votre école. Soudain, l'un de vos joueurs, Alex, s'effondre sur le terrain en plein milieu du match. Il semble avoir des difficultés à respirer et son visage est devenu pâle.\n**Objectif :**\nVotre objectif est de sauver la vie d'Alex en lui prodiguant les premiers soins nécessaires pour un malaise cardiaque.",
+        "consignes": [
+            "Appelez immédiatement les services d'urgence (15 ou autre numéro local).",
+            "Vérifiez si la personne est consciente et respire normalement.",
+            "Mettez la personne en position de récupération si elle est inconsciente et respire.",
+            "Utilisez un défibrillateur automatique externe (DAE) si disponible.",
+            "Effectuez un massage cardiaque si aucune respiration et aucun pouls ne sont détectés."
+        ],
+        "etapes_validation": {
+            "Appel au secours effectué": false,
+            "Vérification de la conscience effectuée": false,
+            "Position de récupération appliquée": false,
+            "Défibrillateur utilisé si nécessaire": false,
+            "Massage cardiaque réalisé si nécessaire": false
+        }
+    },
+    "Intermédiaire": {
+        "description": "Scénario adapté pour le niveau Intermédiaire",
+        "scenario": "**Scénario : Malaise cardiaque sur un terrain de football - Niveau Intermédiaire**\n\n**Introduction :**\nVous êtes l'entraîneur d'une équipe de football junior qui participe à un tournoi régional. L'un de vos joueurs, un jeune de 16 ans, s'effondre soudainement sur le terrain pendant un match. Il ressent une douleur dans la poitrine et a du mal à respirer. Vous devez agir rapidement pour lui prodiguer les premiers soins et appeler les secours.",
+        "consignes": [
+            "Évaluer la situation et identifier les symptômes du malaise cardiaque.",
+            "Appeler les secours et fournir les informations nécessaires (nom du joueur, âge, lieu, etc.).",
+            "Administrer les premiers soins jusqu'à l'arrivée des secours.",
+            "Gérer les distractions causées par l'entourage pour rester concentré sur les soins."
+        ],
+        "etapes_validation": {
+            "Situation évaluée": false,
+            "Appel aux secours effectué": false,
+            "Position allongée et dégagement des voies respiratoires effectués": false,
+            "Vérification du pouls et de la respiration effectuée": false,
+            "Compressions thoraciques et ventilation réalisées si nécessaire": false
+        }
+    },
+    "Avancé": {
+        "description": "Scénario adapté pour le niveau Avancé",
+        "scenario": "**Scénario : Malaise cardiaque sur un terrain de football - Niveau Avancé**\n\n**Introduction :**\nVous êtes un infirmier diplômé d'État (IDE) qui travaille sur un terrain de football pendant un match important. Soudain, un joueur s'effondre après une course intense. Les joueurs et les spectateurs sont paniqués. Vous devez agir rapidement pour sauver la vie du joueur.",
+        "consignes": [
+            "Identifier les symptômes du malaise cardiaque et prendre les mesures appropriées.",
+            "Gérer les distractions et interruptions tout en restant concentré.",
+            "Optimiser le temps d'intervention pour effectuer chaque tâche essentielle.",
+            "Effectuer une réanimation cardiopulmonaire (RCP) en cas d'absence de pouls."
+        ],
+        "etapes_validation": {
+            "Symptômes correctement identifiés": false,
+            "Appel aux secours effectué": false,
+            "RCP effectuée si nécessaire": false,
+            "Gestion efficace des distractions": false,
+            "Temps d'intervention optimisé": false
+        }
+    }
+}
